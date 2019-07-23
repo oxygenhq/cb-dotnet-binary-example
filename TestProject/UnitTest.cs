@@ -38,8 +38,6 @@ namespace TestProject
                 case BrowserType.Chrome:
                     return new ChromeDriver();
                 case BrowserType.Firefox:
-                    FirefoxOptions options = new FirefoxOptions();
-                    options.BrowserExecutableLocation = Path.Combine(AppContext.BaseDirectory, "firefox.exe");
                     return new FirefoxDriver();
                 case BrowserType.IE:
                     return new InternetExplorerDriver();

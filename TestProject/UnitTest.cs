@@ -19,7 +19,7 @@ namespace TestProject
         public void TestWithChromeDriver()
         {
             var linkText = "Complete list of Wikipedias";
-            using (var driver = GetDriver())
+            using (var driver = CloudBeatHelper.GetDriver(TestContext))
             {
                 driver.Navigate().GoToUrl(@"https://en.wikipedia.org/wiki/Main_Page");
                 var link = driver.FindElement(By.PartialLinkText(linkText));
@@ -30,33 +30,5 @@ namespace TestProject
                 clickableElement.Click();
             }
         }
-
-        private RemoteWebDriver GetDriver()
-        {
-            switch (GetBrowserTypeFromArgs())
-            {
-                case BrowserType.Chrome:
-                    return new ChromeDriver();
-                case BrowserType.Firefox:
-                    return new FirefoxDriver();
-                case BrowserType.IE:
-                    return new InternetExplorerDriver();
-                default:
-                    return new ChromeDriver();
-            }
-        }
-
-        private BrowserType GetBrowserTypeFromArgs()
-        {
-            return Enum.TryParse(TestContext.Properties["BrowserName"]?.ToString(), false, out BrowserType browserType) 
-                        ? browserType : BrowserType.Chrome;
-        }
-    }
-
-    public enum BrowserType
-    {
-        Chrome,
-        Firefox,
-        IE
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
@@ -11,16 +12,21 @@ namespace TestProject
     {
         public static RemoteWebDriver GetDriver(TestContext testContext)
         {
+            return new RemoteWebDriver(new Uri(testContext.Properties["SeleniumUrl"].ToString()), GetCapabilities(testContext));
+        }
+
+        private static ICapabilities GetCapabilities(TestContext testContext)
+        {
             switch (GetBrowserTypeFromArgs(testContext))
             {
                 case BrowserType.Chrome:
-                    return new ChromeDriver();
+                    return new ChromeOptions().ToCapabilities();
                 case BrowserType.Firefox:
-                    return new FirefoxDriver();
+                    return new FirefoxOptions().ToCapabilities();
                 case BrowserType.IE:
-                    return new InternetExplorerDriver();
+                    return new InternetExplorerOptions().ToCapabilities();
                 default:
-                    return new ChromeDriver();
+                    return new ChromeOptions().ToCapabilities();
             }
         }
 

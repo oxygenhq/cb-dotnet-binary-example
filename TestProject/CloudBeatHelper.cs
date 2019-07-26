@@ -32,8 +32,16 @@ namespace TestProject
 
         private static BrowserType GetBrowserTypeFromArgs(TestContext testContext)
         {
-            return Enum.TryParse(testContext.Properties["BrowserName"]?.ToString(), false, out BrowserType browserType) 
-                ? browserType : BrowserType.Chrome;
+            var browserName = testContext.Properties["browserName"].ToString();
+            foreach (var enumName in Enum.GetNames(typeof(BrowserType)))
+            {
+                if (browserName.Contains(enumName, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return Enum.Parse<BrowserType>(enumName);
+                }
+            }
+            
+            return BrowserType.Chrome;
         }
     }
 

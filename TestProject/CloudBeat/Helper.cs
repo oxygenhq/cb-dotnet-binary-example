@@ -6,9 +6,9 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
 
-namespace TestProject
+namespace TestProject.CloudBeat
 {
-    public static class CloudBeatHelper
+    public static class Helper
     {
         public static RemoteWebDriver GetDriver(TestContext testContext)
         {

@@ -16,19 +16,18 @@ namespace TestProject
         public TestContext TestContext { get; set; }
         
         [TestMethod]
-        public void TestWithChromeDriver()
+        [TestCategory("success")]
+        public void SuccessUnitTest()
         {
-            var linkText = "Complete list of Wikipedias";
-            using (var driver = CloudBeatHelper.GetDriver(TestContext))
-            {
-                driver.Navigate().GoToUrl(@"https://en.wikipedia.org/wiki/Main_Page");
-                var link = driver.FindElement(By.PartialLinkText(linkText));
-                var jsToBeExecuted = $"window.scroll(0, {link.Location.Y});";
-                ((IJavaScriptExecutor)driver).ExecuteScript(jsToBeExecuted);
-                var wait = new WebDriverWait(driver, TimeSpan.FromMinutes(1));
-                var clickableElement = wait.Until(ExpectedConditions.ElementToBeClickable(By.PartialLinkText(linkText)));
-                clickableElement.Click();
-            }
+            Assert.AreEqual(3, 2 + 1);
+        }
+
+
+        [TestMethod]
+        [TestCategory("fail")]
+        public void FailUnitTest()
+        {
+            Assert.AreEqual(3, 1 + 1);
         }
     }
 }

@@ -12,7 +12,9 @@ namespace TestProject.CloudBeat
     {
         public static RemoteWebDriver GetDriver(TestContext testContext)
         {
-            return new RemoteWebDriver(new Uri(testContext.Properties["SeleniumUrl"].ToString()), GetCapabilities(testContext));
+            var driver = new RemoteWebDriver(new Uri(testContext.Properties["SeleniumUrl"].ToString()), GetCapabilities(testContext));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            return driver;
         }
 
         private static ICapabilities GetCapabilities(TestContext testContext)

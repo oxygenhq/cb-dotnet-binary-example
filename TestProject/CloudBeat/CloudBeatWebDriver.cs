@@ -1,21 +1,33 @@
-using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.Events;
+using OpenQA.Selenium.Support.Extensions;
+using System;
 
-namespace TestProject.CloudBeat
+namespace TestProject
 {
-    public static class Helper
+    public class CloudbeatWebDriver : RemoteWebDriver
     {
-        public static RemoteWebDriver GetDriver(TestContext testContext)
+        private TestContext _context;
+
+        public CloudbeatWebDriver(TestContext testContext) : base(GetUri(testContext), GetCapabilities(testContext))
         {
-            var driver = new RemoteWebDriver(new Uri(testContext.Properties["SeleniumUrl"].ToString()), GetCapabilities(testContext));
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-            return driver;
+            _context = testContext;
+            this.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
         }
+
+        public void TakeScreenShot()
+        {
+            var screenShotPath = $"{_context.FullyQualifiedTestClassName}_{_context.TestName}.png";
+            this.TakeScreenshot().SaveAsFile(screenShotPath);
+            _context.AddResultFile(screenShotPath);
+        }
+
+        private static Uri GetUri(TestContext testContext) => new Uri(testContext.Properties["SeleniumUrl"]?.ToString());
 
         private static ICapabilities GetCapabilities(TestContext testContext)
         {
@@ -34,15 +46,15 @@ namespace TestProject.CloudBeat
 
         private static BrowserType GetBrowserTypeFromArgs(TestContext testContext)
         {
-            var browserName = testContext.Properties["browserName"].ToString();
+            var browserName = testContext.Properties["browserName"]?.ToString();
             foreach (var enumName in Enum.GetNames(typeof(BrowserType)))
             {
-                if (browserName.Contains(enumName, StringComparison.InvariantCultureIgnoreCase))
+                if (browserName != null && browserName.Contains(enumName, StringComparison.InvariantCultureIgnoreCase))
                 {
                     return Enum.Parse<BrowserType>(enumName);
                 }
             }
-            
+
             return BrowserType.Chrome;
         }
     }

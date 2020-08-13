@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject.csproj", "{AAF5C203-AB79-4743-9F2E-691B83788DC6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudBeat.Frameworks.MSTest", "..\..\cb-framework-plugin-mstest\CloudBeat.Frameworks\CloudBeat.Frameworks.MSTest\CloudBeat.Frameworks.MSTest.csproj", "{2C5D544B-6B0E-42A4-9FFA-D3EF2813481E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudBeat.Frameworks.Common", "..\..\cb-framework-plugin-mstest\CloudBeat.Frameworks\CloudBeat.Frameworks.Common\CloudBeat.Frameworks.Common.csproj", "{3F2BFCBF-2980-4865-9DFA-1D5E1523A5ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{AAF5C203-AB79-4743-9F2E-691B83788DC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAF5C203-AB79-4743-9F2E-691B83788DC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAF5C203-AB79-4743-9F2E-691B83788DC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C5D544B-6B0E-42A4-9FFA-D3EF2813481E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C5D544B-6B0E-42A4-9FFA-D3EF2813481E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C5D544B-6B0E-42A4-9FFA-D3EF2813481E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C5D544B-6B0E-42A4-9FFA-D3EF2813481E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F2BFCBF-2980-4865-9DFA-1D5E1523A5ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F2BFCBF-2980-4865-9DFA-1D5E1523A5ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F2BFCBF-2980-4865-9DFA-1D5E1523A5ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F2BFCBF-2980-4865-9DFA-1D5E1523A5ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

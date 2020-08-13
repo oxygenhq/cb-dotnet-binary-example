@@ -19,4 +19,8 @@
         <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\cb-framework-plugin-mstest\CloudBeat.Frameworks\CloudBeat.Frameworks.MSTest\CloudBeat.Frameworks.MSTest.csproj" />
+    </ItemGroup>
+
 </Project>

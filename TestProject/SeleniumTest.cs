@@ -16,13 +16,6 @@ namespace TestProject
         {
         }
 
-        [ClassInitialize]
-        public static void InitTest(TestContext context)
-        {
-            InitContext(context);
-            InitWebDriver(new CBWebDriver(context));
-        }
-
         [TestMethod]
         [TestCategory("purchase")]
         public void PurchaseDress()
@@ -61,10 +54,23 @@ namespace TestProject
             link4.Click();
         }
 
-        [ClassCleanup]
-        public static void CleanUp()
+        [TestMethod]
+        [TestCategory("purchase")]
+        public void PurchaseDress3()
         {
-            CleanUpDriver();
+            var linkText = "DRESSES";
+            _driver.Navigate().GoToUrl(SITE_URL);
+            var link = _driver.FindElement(By.PartialLinkText(linkText));
+            link.Click();
+
+            var link2 = _driver.FindElement(By.Id("layered_category_sdawq11"));
+            link2.Click();
+
+            var link3 = _driver.FindElement(By.PartialLinkText("Yellow"));
+            link3.Click();
+
+            var link4 = _driver.FindElement(By.Id("layered_id_attribute_group_16"));
+            link4.Click();
         }
     }
 }

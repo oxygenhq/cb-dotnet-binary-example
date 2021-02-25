@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\cb-framework-plugin-mstest\CloudBeat.Frameworks\CloudBeat.Frameworks.MSTest\CloudBeat.Frameworks.MSTest.csproj" />
+      <ProjectReference Include="..\..\mstest\CloudBeat.Frameworks\CloudBeat.Frameworks.MSTest\CloudBeat.Frameworks.MSTest.csproj" />
     </ItemGroup>
 
 </Project>
